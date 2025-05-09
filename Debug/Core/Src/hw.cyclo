@@ -1,0 +1,6 @@
+../Core/Src/hw.c:21:6:hwInit	1
+../Core/Src/hw.c:36:13:MX_ADC1_Init	4
+../Core/Src/hw.c:68:13:MX_DMA_Init	1
+../Core/Src/hw.c:86:13:MX_GPIO_Init	1
+../Core/Src/hw.c:129:13:MX_TIM1_Init	10
+../Core/Src/hw.c:203:6:HAL_ADC_ConvCpltCallback	1

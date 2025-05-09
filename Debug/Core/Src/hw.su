@@ -1,0 +1,6 @@
+../Core/Src/hw.c:21:6:hwInit	8	static
+../Core/Src/hw.c:36:13:MX_ADC1_Init	24	static
+../Core/Src/hw.c:68:13:MX_DMA_Init	16	static
+../Core/Src/hw.c:86:13:MX_GPIO_Init	40	static
+../Core/Src/hw.c:129:13:MX_TIM1_Init	112	static
+../Core/Src/hw.c:203:6:HAL_ADC_ConvCpltCallback	16	static

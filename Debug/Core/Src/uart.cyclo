@@ -1,0 +1,10 @@
+../Core/Src/uart.c:22:6:uartInit	2
+../Core/Src/uart.c:32:6:uartOpen	4
+../Core/Src/uart.c:72:6:uartClose	1
+../Core/Src/uart.c:77:10:uartAvailable	2
+../Core/Src/uart.c:92:9:uartRead	2
+../Core/Src/uart.c:105:10:uartWrite	3
+../Core/Src/uart.c:124:10:uartPrintf	1
+../Core/Src/uart.c:142:10:uartGetBaud	2
+../Core/Src/uart.c:158:6:HAL_UART_ErrorCallback	1
+../Core/Src/uart.c:165:6:HAL_UART_RxCpltCallback	1

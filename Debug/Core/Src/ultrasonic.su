@@ -1,0 +1,2 @@
+../Core/Src/ultrasonic.c:15:6:ultrasonicInit	4	static
+../Core/Src/ultrasonic.c:21:10:ultrasnoicGetDistanceTemperture	48	static

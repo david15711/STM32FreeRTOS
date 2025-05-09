@@ -1,0 +1,4 @@
+../Core/Src/bsp.c:14:6:bspInit	8	static
+../Core/Src/bsp.c:24:6:SystemClock_Config	88	static
+../Core/Src/bsp.c:73:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/bsp.c:91:6:Error_Handler	4	static,ignoring_inline_asm
