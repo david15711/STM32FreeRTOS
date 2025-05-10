@@ -10,6 +10,11 @@
 
 #include "hw.h"
 
+typedef struct {
+	char msg[7];
+	char msg_type;
+} IPCmessage_t;
+
 void apInit(void);
 void apMain(void);
 

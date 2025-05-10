@@ -21,4 +21,6 @@
 #define _USE_HW_TEMPERATURE
 #define HW_ADC_MAX_CH 2
 
+#define _USE_HW_RTOS
+
 #endif /* INC_HW_DEF_H_ */

@@ -83,20 +83,51 @@ void NMI_Handler(void)
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
+volatile uint32_t stacked_r0;
+volatile uint32_t stacked_r1;
+volatile uint32_t stacked_r2;
+volatile uint32_t stacked_r3;
+volatile uint32_t stacked_r12;
+volatile uint32_t stacked_lr;
+volatile uint32_t stacked_pc;
+volatile uint32_t stacked_psr;
+
+void hard_fault_handler_c(uint32_t *stack_address)
+{
+  stacked_r0  = stack_address[0];
+  stacked_r1  = stack_address[1];
+  stacked_r2  = stack_address[2];
+  stacked_r3  = stack_address[3];
+  stacked_r12 = stack_address[4];
+  stacked_lr  = stack_address[5];
+  stacked_pc  = stack_address[6];
+  stacked_psr = stack_address[7];
+
+  while (1); // breakpoint 걸어서 디버깅
+}
+
 /**
   * @brief This function handles Hard fault interrupt.
   */
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+	__asm volatile
+	(
+		"TST LR, #4           \n"
+		"ITE EQ               \n"
+		"MRSEQ R0, MSP        \n"
+		"MRSNE R0, PSP        \n"
+		"B hard_fault_handler_c \n"
+	);
   /* USER CODE END HardFault_IRQn 0 */
-  while (1)
-  {
+  //while (1)
+  //{
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
     /* USER CODE END W1_HardFault_IRQn 0 */
-  }
+  //}
 }
+
 
 /**
   * @brief This function handles Memory management fault.

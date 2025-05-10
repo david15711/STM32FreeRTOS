@@ -1,5 +1,0 @@
-../Core/Src/ap.c:64:6:apInit	8	static
-../Core/Src/ap.c:80:6:apMain	8	static
-../Core/Src/ap.c:96:6:StartDefaultTask	16	static
-../Core/Src/ap.c:114:6:StartTask02	16	static
-../Core/Src/ap.c:132:6:StartTask03	16	static

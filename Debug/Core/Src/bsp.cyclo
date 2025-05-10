@@ -1,4 +1,0 @@
-../Core/Src/bsp.c:14:6:bspInit	1
-../Core/Src/bsp.c:24:6:SystemClock_Config	4
-../Core/Src/bsp.c:73:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/bsp.c:91:6:Error_Handler	1

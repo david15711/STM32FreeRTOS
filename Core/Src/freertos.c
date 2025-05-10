@@ -25,7 +25,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "hw.h"
-#include "freertos.h"
 
 /* USER CODE END Includes */
 
@@ -51,12 +50,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
-void rtosInit(void)
-{
-
-}
-
 /* USER CODE END FunctionPrototypes */
 
 /* Private application code --------------------------------------------------*/
