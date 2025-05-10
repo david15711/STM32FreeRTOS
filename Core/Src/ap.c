@@ -14,17 +14,17 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for myIoTask */
+osThreadId_t myIoTaskHandle;
+const osThreadAttr_t myIoTask_attributes = {
+  .name = "myIoTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
 /* Definitions for myDistanceTask */
 osThreadId_t myDistanceTaskHandle;
 const osThreadAttr_t myDistanceTask_attributes = {
   .name = "myDistanceTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
-/* Definitions for myIOTask */
-osThreadId_t myIOTaskHandle;
-const osThreadAttr_t myIOTask_attributes = {
-  .name = "myIOTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
@@ -54,7 +54,7 @@ const osEventFlagsAttr_t myICEvent01_attributes = {
   .name = "myICEvent01"
 };
 
-uint32_t adc_value[2];
+uint16_t adc_value[2];
 ultrasonicConfig_t sonic1;
 
 extern ADC_HandleTypeDef hadc1;
@@ -103,8 +103,8 @@ void apInit(void)
 	myIPCQueue02Handle = osMessageQueueNew (8, 8, &myIPCQueue02_attributes);
 	myIPCQueue03Handle = osMessageQueueNew (8, 8, &myIPCQueue03_attributes);
 	defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-	myDistanceTaskHandle = osThreadNew(StartTask02, NULL, &myDistanceTask_attributes);
-	myIOTaskHandle = osThreadNew(StartTask03, NULL, &myIOTask_attributes);
+	myIoTaskHandle = osThreadNew(StartTask02, NULL, &myIoTask_attributes);
+	myDistanceTaskHandle = osThreadNew(StartTask03, NULL, &myDistanceTask_attributes);
 	myICEvent01Handle = osEventFlagsNew(&myICEvent01_attributes);
 }
 
@@ -127,8 +127,9 @@ void apMain(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-	uint32_t adc[2], distance;
+	uint16_t adc[2], distance = 0;
 	IPCmessage_t IPC1queue, IPC2queue;
+	float temperature;
   /* Infinite loop */
 	for(;;)
 	{
@@ -136,12 +137,13 @@ void StartDefaultTask(void *argument)
 		HAL_ADC_Start_DMA(&hadc1, adc_value, 2);
 		osSemaphoreAcquire(myUARTSem01Handle, 100);
 		adc[0] = adc_value[0];
+		temperature = 1000 * temperatureRun((uint32_t)adc_value[0]);
 		adc[1] = adc_value[1];
-		memcpy(&IPC1queue.msg[0], &adc[0], sizeof(uint32_t));
+		memcpy(&IPC1queue.msg[0], &adc[0], sizeof(uint16_t));
 		osMessageQueuePut(myIPCQueue01Handle, &IPC1queue, 0, 100);
 		osMessageQueueGet(myIPCQueue02Handle, &IPC2queue, 0, 100);
-		memcpy(&distance, &IPC2queue.msg[0], sizeof(uint32_t));
-		uartPrintf(_DEF_UART2, "raw ADC: %lu, %lu, %lu\r\n", adc[0], adc[1], distance);
+		memcpy(&distance, &IPC2queue.msg[0], sizeof(uint16_t));
+		uartPrintf(_DEF_UART2, "raw ADC: %lu, %lu, %lu\r\n", (uint32_t)temperature, adc[1], distance);
 		osDelay(1);
 	}
   /* USER CODE END 5 */

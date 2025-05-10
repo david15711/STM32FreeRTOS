@@ -22,8 +22,8 @@ bool temperauteInit(void)
 
 float temperatureRun(uint32_t adc_value)
 {
-    float VSense = (adc_value * VREF) / 4095.0;  // ADC 값을 전압(mV)으로 변환
-    float temperature = ((VSense - V25degC) / avg_slope) + 25.0;  // 온도 변환
+    float VSense = (adc_value * VREF) / 4096.0;  // ADC 값을 전압(mV)으로 변환
+    float temperature = ((V25degC - VSense) / avg_slope) + 25.0;  // 온도 변환
     return temperature;
 }
 
