@@ -39,6 +39,7 @@
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 /* USER CODE END 0 */
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -63,17 +64,16 @@ int main(void)
   /* Init scheduler */
   /* Start scheduler */
   /* We should never get here as control is now taken by the scheduler */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
+
 /* USER CODE BEGIN 4 */
 /* USER CODE END 4 */
 

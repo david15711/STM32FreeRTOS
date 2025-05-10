@@ -11,13 +11,13 @@
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for myUARTTask */
-osThreadId_t myUARTTaskHandle;
-const osThreadAttr_t myUARTTask_attributes = {
-  .name = "myUARTTask",
+/* Definitions for myDistanceTask */
+osThreadId_t myDistanceTaskHandle;
+const osThreadAttr_t myDistanceTask_attributes = {
+  .name = "myDistanceTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
@@ -28,17 +28,17 @@ const osThreadAttr_t myIOTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* Definitions for myIPCQueue01 */ //Main task to UltrasonicTask
+/* Definitions for myIPCQueue01 */
 osMessageQueueId_t myIPCQueue01Handle;
 const osMessageQueueAttr_t myIPCQueue01_attributes = {
   .name = "myIPCQueue01"
 };
-/* Definitions for myIPCQueue02 */ //sonic to main task
+/* Definitions for myIPCQueue02 */
 osMessageQueueId_t myIPCQueue02Handle;
 const osMessageQueueAttr_t myIPCQueue02_attributes = {
   .name = "myIPCQueue02"
 };
-/* Definitions for myIPCQueue03 */ //IC Callback to sonic task
+/* Definitions for myIPCQueue03 */
 osMessageQueueId_t myIPCQueue03Handle;
 const osMessageQueueAttr_t myIPCQueue03_attributes = {
   .name = "myIPCQueue03"
@@ -102,10 +102,10 @@ void apInit(void)
 	myIPCQueue01Handle = osMessageQueueNew (8, 8, &myIPCQueue01_attributes);
 	myIPCQueue02Handle = osMessageQueueNew (8, 8, &myIPCQueue02_attributes);
 	myIPCQueue03Handle = osMessageQueueNew (8, 8, &myIPCQueue03_attributes);
-	myICEvent01Handle = osEventFlagsNew(&myICEvent01_attributes);
 	defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-	myUARTTaskHandle = osThreadNew(StartTask02, NULL, &myUARTTask_attributes);
+	myDistanceTaskHandle = osThreadNew(StartTask02, NULL, &myDistanceTask_attributes);
 	myIOTaskHandle = osThreadNew(StartTask03, NULL, &myIOTask_attributes);
+	myICEvent01Handle = osEventFlagsNew(&myICEvent01_attributes);
 }
 
 void apMain(void)
@@ -149,7 +149,7 @@ void StartDefaultTask(void *argument)
 
 /* USER CODE BEGIN Header_StartTask02 */
 /**
-* @brief Function implementing the myUARTTask thread.
+* @brief Function implementing the myUltrasonicTask thread.
 * @param argument: Not used
 * @retval None
 */

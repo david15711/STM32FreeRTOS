@@ -105,7 +105,6 @@ void hard_fault_handler_c(uint32_t *stack_address)
 
   while (1); // breakpoint 걸어서 디버깅
 }
-
 /**
   * @brief This function handles Hard fault interrupt.
   */
@@ -121,13 +120,12 @@ void HardFault_Handler(void)
 		"B hard_fault_handler_c \n"
 	);
   /* USER CODE END HardFault_IRQn 0 */
-  //while (1)
-  //{
+  while (1)
+  {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
     /* USER CODE END W1_HardFault_IRQn 0 */
-  //}
+  }
 }
-
 
 /**
   * @brief This function handles Memory management fault.
