@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,9 +39,12 @@
 
 /* USER CODE BEGIN PV */
 /* USER CODE END PV */
+
 /* Private function prototypes -----------------------------------------------*/
+
 /* USER CODE BEGIN PFP */
 /* USER CODE END PFP */
+
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 /* USER CODE END 0 */
@@ -60,6 +62,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
   /* USER CODE BEGIN Init */
   hwInit();
   apInit();
@@ -67,6 +70,7 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
+
 
   /* USER CODE BEGIN SysInit */
   /* USER CODE END SysInit */
@@ -76,7 +80,7 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  /* Start scheduler */
+
 
   /* We should never get here as control is now taken by the scheduler */
 

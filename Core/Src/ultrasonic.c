@@ -21,7 +21,9 @@ bool ultrasonicInit(void)
 uint32_t ultrasnoicGetDistanceTemperture(uint32_t start, uint32_t end, float temp)
 {
 	float sonicSpeed;
-	uint32_t timerCount = end - start;		//us
+	int32_t startl = start, endl = end;
+	uint32_t timerCount;
+	timerCount = ((endl - startl) > 0) ? (end - start) : (24000 + end - start) ;		//us
 	sonicSpeed = 343.0 + (temp - 20.0) * 0.6;		//m/sec
 	float distance = timerCount / 2000000.0 * (float) ((uint32_t)(sonicSpeed*100)) ;	//cm, us * 2 / m * s
 	if(is_running)
