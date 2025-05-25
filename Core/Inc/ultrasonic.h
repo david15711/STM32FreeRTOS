@@ -15,7 +15,7 @@ typedef struct {
   TIM_HandleTypeDef *htim;
   uint32_t pwm_channel;
   uint32_t ic1_channel;
-  uint32_t ic1_channel;
+  uint32_t ic2_channel;
   uint32_t APB_clock;
   uint16_t trig_pin;
   uint16_t echo_pin;

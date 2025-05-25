@@ -55,7 +55,7 @@ const osMessageQueueAttr_t myIPCQueue03_attributes = {
 };
 
 uint32_t adc_value[3];
-ultrasonicConfig_t sonic1;
+ultrasonicInit_t sonic1;
 
 extern ADC_HandleTypeDef hadc1;
 extern DMA_HandleTypeDef hdma_adc1;

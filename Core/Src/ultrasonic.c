@@ -38,7 +38,7 @@ uint32_t ultrasnoicGetDistanceTemperture(uint32_t start, uint32_t end, float tem
 
 #endif
 
-#if 01
+#if 0
 /**
   * @brief TIM1 Initialization Function
   * @param None
